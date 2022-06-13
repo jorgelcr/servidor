@@ -13,5 +13,6 @@ app.use(cors());
 app.use('/api/unidad', require('./routes/unidad.js'));
 app.use('/api/criterio', require('./routes/criterios.js'));
 app.use('/api/usuario', require('./routes/usuario.js'));
+app.use('/api/evidencias', require('./routes/evidencias.js'));
 app.listen(3000);
 console.log('Hello world');
