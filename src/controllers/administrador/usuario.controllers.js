@@ -28,13 +28,8 @@ const get_Rol = async(req, res) => {
     }) 
     } 
 
-<<<<<<< HEAD:src/controllers/administrador/usuario.controllers.js
 }
  
-=======
-} 
-
->>>>>>> 1729179b2d462039d93fe44a44de80b3171532ac:src/controllers/usuario.controllers.js
 const get_unidad = async(req, res) => {
 
     try {
