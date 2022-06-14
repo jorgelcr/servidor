@@ -10,8 +10,9 @@ app.use(express.json());
 app.use(express.urlencoded({extended: false}));
 app.use(cors());
 ///Rutas
-app.use('/api/unidad', require('./routes/unidad.js'));
-app.use('/api/criterio', require('./routes/criterios.js'));
-app.use('/api/usuario', require('./routes/usuario.js'));
+app.use('/api/unidad', require('./routes/routes-administrador/unidad.js'));
+app.use('/api/criterio', require('./routes/routes-administrador/criterios.js'));
+app.use('/api/proceso', require('./routes/routes-administrador/procesos.js'));
+app.use('/api/usuario', require('./routes/routes-administrador/usuario.js'));
 app.listen(3000);
 console.log('Hello world');
