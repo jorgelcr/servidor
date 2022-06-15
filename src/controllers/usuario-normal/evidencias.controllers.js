@@ -33,6 +33,8 @@ const get_Evidencias = async(req, res) => {
 
 }
 
+
+
 const post_Evidencias = async(req, res = response) => {
 
     const { codigo_criterios, nombre_criterios, descripcion_criterios} = req.body;
