@@ -3,13 +3,17 @@ const Router = require('express');
 const router = Router();
 
 
-const {get_Rol, get_unidad, post_Usuario} = require('../../controllers/administrador/usuario.controllers');
+const {get_Usuario, post_Usuario, delete_Usuario, update_Usuario, getUserByIdUsuario, getUnidadUsuario, getRolUsuario} = require('../../controllers/administrador/usuario.controllers');
 
 
-router.get('/rol/', get_Rol);
-router.get('/unidad/', get_unidad);
+router.get('/usuario', get_Usuario);
 router.post('/', post_Usuario);
-module.exports = router;
+router.delete('/:id', delete_Usuario);
+router.put('/:id', update_Usuario); 
+router.get('/:id', getUserByIdUsuario);
+
+router.get('/', getUnidadUsuario);
+router.get('/rol/rol', getRolUsuario);
+module.exports = router;   
 
     
-  
