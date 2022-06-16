@@ -13,7 +13,11 @@ app.use(cors());
 app.use('/api/unidad', require('./routes/routes-administrador/unidad.js'));
 app.use('/api/criterio', require('./routes/routes-administrador/criterios.js'));
 app.use('/api/proceso', require('./routes/routes-administrador/procesos.js'));
+app.use('/api/tiporegistro', require('./routes/routes-administrador/tiposDeRegistros.js'));
+app.use('/api/ambitoacademico', require('./routes/routes-administrador/AmbitoAcademico.js'));
 app.use('/api/usuario', require('./routes/routes-administrador/usuario.js'));
+
+app.use('/api/evidencias', require('./routes/routes-usuario-normal/evidencias.js')); 
 app.use('/api/evidencias', require('./routes/routes-usuario-normal/evidencias.js'));
 app.use('/api/getcrearevidencias', require('./routes/routes-usuario-normal/getcrearevidencias.js'));
 

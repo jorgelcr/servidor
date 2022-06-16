@@ -37,7 +37,7 @@ const post_Procesos = async(req, res = response) => {
     const { codigo_procesos, nombre_procesos, estado_procesos} = req.body;
     
     try { 
-
+ 
         const insertProcesos = await pool.query('INSERT INTO procesos ( codigo_procesos, nombre_procesos, estado_procesos) VALUES ($1, $2, $3)',
         [codigo_procesos, nombre_procesos, estado_procesos]);
         console.log(insertProcesos);
@@ -69,9 +69,9 @@ const delete_Procesos = async (req, res) => {
 };
 
 const getUserByIdProcesos = async (req, res) => {
+    
     const id =  req.params.id;
-    let data = [];
-     data = await pool.query('select * from procesos WHERE codigo_procesos = $1', [id]);
+     const data = await pool.query('select * from procesos WHERE codigo_procesos = $1', [id]);
     res.status(200).json({
         ok: true,
         resultado: data.rows

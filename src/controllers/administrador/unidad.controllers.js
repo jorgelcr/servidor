@@ -6,7 +6,7 @@ const config = {
        
     user: 'postgres',
     host: 'localhost',
-    password: '1',
+    password: '7551',
     database: 'evidencias'
 }
 const pool = new Pool (config);
@@ -108,13 +108,22 @@ const update_Unidad= async (req, res) => {
 }       
 
 const getUserByIdUnidad = async (req, res) => {
-    const id =  req.params.id;
-    const data = await pool.query('select * from unidad WHERE codigo_unidad = $1', [id]);
-    res.status(200).json({
-        resultado: data.rows});  
-};  
- 
 
+    try {
+        
+        const id =  req.params.id;
+        const data = await pool.query('select * from unidad WHERE codigo_unidad = $1', [id]);
+        res.status(200).json({
+            resultado: data.rows});  
+    
+    } catch (error) {
+        res.status(400).json({
+            ok: false,
+             message: 'Error al buscar por codigo en UNIDAD DEL USUARIO',
+        });  
+    }
+ 
+}
 /* ###################################################################################################### */
 
 module.exports = {
