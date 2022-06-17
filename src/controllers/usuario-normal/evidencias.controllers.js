@@ -38,27 +38,27 @@ const get_Evidencias = async(req, res) => {
 
 const post_Evidencias = async(req, res = response) => {
 
-    const { codigo_criterios, nombre_criterios, descripcion_criterios} = req.body;
+    const { nombre_cliente, fk_id_usuario, fk_id_debilidades, fk_id_unidad, fk_id_criterios, fk_id_registros, fk_id_procesos, fk_id_estado, fk_id_ambito_academico} = req.body;
     
     try { 
 
-        const insertCriterio = await pool.query('INSERT INTO evidencias ( nombre_cliente, fk_id_usuario, fk_id_debilidades, fk_id_unidad, fk_id_criterios, fk_id_registros, fk_id_procesos, fk_id_estado, fk_id_ambito_academico) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)',
-        [codigo_criterios, nombre_criterios, descripcion_criterios]);
-        console.log(insertCriterio);
+        const insertEvidencia = await pool.query('INSERT INTO evidencias ( nombre_cliente, fk_id_usuario, fk_id_debilidades, fk_id_unidad, fk_id_criterios, fk_id_registros, fk_id_procesos, fk_id_estado, fk_id_ambito_academico) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)',
+        [nombre_cliente, fk_id_usuario, fk_id_debilidades, fk_id_unidad, fk_id_criterios, fk_id_registros, fk_id_procesos, fk_id_estado, fk_id_ambito_academico]);
+        console.log(insertEvidencia);
         res.status(200).json({
             ok: true,
-            message: ' Producto agregado exitosamente xd',
+            message: ' Evidencia agregado exitosamente.',
             body: {
-                producto: {codigo_criterios,
-                           descripcion_criterios,
-                           nombre_criterios }
+                evidencia: {nombre_cliente, fk_id_usuario, fk_id_debilidades, 
+                    fk_id_unidad, fk_id_criterios, fk_id_registros, fk_id_procesos, 
+                    fk_id_estado, fk_id_ambito_academico }
             }
         })
     } catch (error) {
         console.log(error);
         res.status(400).json( {
             ok: true,
-            msg: 'Error Post Criterios'
+            msg: 'Error Post Evidencia'
     })
 
 }}

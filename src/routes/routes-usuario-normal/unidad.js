@@ -4,6 +4,6 @@ const router = Router();
 
 const {get_unidad} = require('../../controllers/usuario-normal/unidad.controllers');
 
-router.get('/', get_unidad);
+router.get('/unidad', get_unidad);
 
 module.exports = router;

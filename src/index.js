@@ -27,5 +27,7 @@ app.use('/api/getcriterio', require('./routes/routes-usuario-normal/criterio.js'
 app.use('/api/getproceso', require('./routes/routes-usuario-normal/proceso.js'));
 app.use('/api/getdebilidad', require('./routes/routes-usuario-normal/debilidad.js'));
 
+app.use('/api/postevidencias', require('./routes/routes-usuario-normal/evidencias.js'));
+
 app.listen(3000);
 console.log('Hello world');

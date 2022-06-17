@@ -4,6 +4,6 @@ const router = Router();
 
 const {get_proceso} = require('../../controllers/usuario-normal/proceso.controllers');
 
-router.get('/', get_proceso);
+router.get('/proceso', get_proceso);
 
 module.exports = router;

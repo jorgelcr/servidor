@@ -4,6 +4,6 @@ const router = Router();
 
 const {get_ambitoacademico} = require('../../controllers/usuario-normal/ambito_academico.controllers');
 
-router.get('/', get_ambitoacademico);
+router.get('/academico', get_ambitoacademico);
 
 module.exports = router;
