@@ -14,7 +14,7 @@ const pool = new Pool (config);
 const get_criterio = async(req, res) => {
     try {
         //const selectCriterio= await pool.query('SELECT nombre_criterios from criterios');
-        const selectCriterio= await pool.query('SELECT id_criterios, nombre_criterios, fk_id_criterios FROM criterios INNER JOIN evidencias ON evidencias.fk_id_criterios = criterios.id_criterios');
+        const selectCriterio= await pool.query('SELECT id_criterios, nombre_criterios FROM criterios');
         res.status(200).json(selectCriterio.rows);
     } catch (error) {
           res.status(400).json( {
