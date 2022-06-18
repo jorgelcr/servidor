@@ -13,7 +13,8 @@ const pool = new Pool (config);
 
 const get_proceso = async(req, res) => {
     try {
-        const selectProceso= await pool.query('SELECT nombre_procesos from procesos');
+        //const selectProceso= await pool.query('SELECT nombre_procesos from procesos');
+        const selectProceso= await pool.query('SELECT id_procesos, nombre_procesos, fk_id_procesos FROM procesos INNER JOIN evidencias ON evidencias.fk_id_procesos = procesos.id_procesos');
         res.status(200).json(selectProceso.rows);
     } catch (error) {
           res.status(400).json( {

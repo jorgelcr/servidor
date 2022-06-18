@@ -13,7 +13,8 @@ const pool = new Pool (config);
 
 const get_ambitoacademico = async(req, res) => {
     try {
-        const selectAmbitoAcademico= await pool.query('SELECT nombre_ambito_academico from ambito_academico');
+        //const selectAmbitoAcademico= await pool.query('SELECT nombre_ambito_academico from ambito_academico');
+        const selectAmbitoAcademico= await pool.query('SELECT id_ambito_academico, nombre_ambito_academico, fk_id_ambito_academico FROM ambito_academico INNER JOIN evidencias ON evidencias.fk_id_ambito_academico = ambito_academico.id_ambito_academico');
         res.status(200).json(selectAmbitoAcademico.rows);
     } catch (error) {
           res.status(400).json( {
