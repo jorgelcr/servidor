@@ -113,7 +113,7 @@ const getUnidadUsuario = async(req, res) => {
 
     try { 
          
-        const selectUnidad= await pool.query('SELECT * FROM unidad where unidad_defecto = false');
+        const selectUnidad= await pool.query('SELECT * FROM unidad');
       
         res.status(200).json({
             ok: true,
