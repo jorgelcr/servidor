@@ -6,7 +6,7 @@ const config = {
        
     user: 'postgres',
     host: 'localhost',
-    password: '1',
+    password: '7551',
     database: 'evidencias'
 }
 const pool = new Pool (config);
@@ -113,8 +113,8 @@ const getUnidadUsuario = async(req, res) => {
 
     try { 
          
-        const selectUnidad= await pool.query('SELECT * FROM unidad where unidad_defecto = false');
-      
+        const selectUnidad= await pool.query('SELECT * FROM unidad ');
+      /* where unidad_defecto = false */
         res.status(200).json({
             ok: true,
             resultado: selectUnidad.rows});
