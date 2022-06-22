@@ -104,16 +104,16 @@ const update_Usuario= async (req, res) => {
 
 const getUserByIdUsuario = async (req, res) => {
     const id =  req.params.id;
-    const data = await pool.query('select * from usuarios WHERE id_usuarios = $1', [id]);
+    const data = await pool.query('select * from usuarios INNER JOIN unidad ON usuarios.fk_id_unidad = unidad.id_unidad WHERE id_usuarios = $1', [id]);
     res.status(200).json({
         resultado: data.rows});  
 };  
- 
+  
 const getUnidadUsuario = async(req, res) => {
 
     try { 
          
-        const selectUnidad= await pool.query('SELECT * FROM unidad');
+        const selectUnidad= await pool.query('SELECT * FROM unidad where unidad_defecto = false');
       
         res.status(200).json({
             ok: true,
