@@ -18,11 +18,7 @@ const getUnidad = async(req, res) => {
         const selectUnidad= await pool.query('SELECT * FROM unidad');
       
         res.status(200).json(selectUnidad.rows);
-    /*  res.status(200).json( {
-         ok2: selectUnidad.rows, 
-        ok: true,
-        msg: 'get unidad'
-    }) */
+
     } catch (error) {
           res.status(400).json( {
         ok: true,
