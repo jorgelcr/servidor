@@ -66,9 +66,9 @@ const post_Evidencias = async(req, res = response) => {
 
 const delete_Evidencias = async (req, res) => {
     const id =  req.params.id;
-    const deleteCriterio = await pool.query('DELETE FROM evidencias WHERE id_evidencias = $1', [id]);
-    console.log(deleteCriterio);
-    res.json(`Criterios ${id} borrada Satisfactoriamente`);
+    const deleteEvidencias = await pool.query('DELETE FROM evidencias WHERE id_evidencias = $1', [id]);
+    console.log(deleteEvidencias);
+    res.json(`Evidencias de id: ${id} borrada Satisfactoriamente`);
 
 };
 

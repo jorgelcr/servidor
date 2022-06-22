@@ -29,5 +29,7 @@ app.use('/api/getdebilidad', require('./routes/routes-usuario-normal/debilidad.j
 
 app.use('/api/postevidencia', require('./routes/routes-usuario-normal/evidencias.js'));
 
+app.use('/api/deleteevidencias', require('./routes/routes-usuario-normal/evidencias.js'));
+
 app.listen(3000);
 console.log('Hello world');
