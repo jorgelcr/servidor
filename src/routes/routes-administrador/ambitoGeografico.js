@@ -3,14 +3,10 @@ const Router = require('express');
 const router = Router();
 
 
-const {get_AmbitoGeografico, post_AmbitoGeografico, delete_AmbitoGeografico, update_AmbitoGeografico, getUserByIdAmbitoGeografico} = require('../../controllers/administrador/ambitoGeografico.controllers');
+const {get_AmbitoGeografico} = require('../../controllers/administrador/ambitoGeografico.controllers');
 
 
-router.get('/', get_AmbitoGeografico);
-router.post('/', post_AmbitoGeografico);
-router.delete('/:id', delete_AmbitoGeografico);
-router.put('/:id', update_AmbitoGeografico); 
-router.get('/:id', getUserByIdAmbitoGeografico); 
+router.get('/', get_AmbitoGeografico); 
 module.exports = router;
 
     

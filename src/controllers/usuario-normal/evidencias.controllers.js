@@ -6,7 +6,7 @@ const config = {
        
     user: 'postgres',
     host: 'localhost',
-    password: '7551',
+    password: '1',
     database: 'evidencias'
 }
 const pool = new Pool (config);
@@ -38,12 +38,12 @@ const get_Evidencias = async(req, res) => {
 
 const post_Evidencias = async(req, res = response) => {
 
-    const { nombre_cliente, fk_id_usuario, fk_id_debilidades, fk_id_unidad, fk_id_criterios, fk_id_registros, fk_id_procesos, fk_id_estado, fk_id_ambito_academico} = req.body;
+    const { nombre_cliente, fk_id_usuario, fk_id_debilidades, fk_id_unidad, fk_id_criterios, fk_id_registros, fk_id_procesos, fk_id_estado, fk_id_ambito_academico, fk_id_ambito_geografico} = req.body;
     
     try { 
 
-        const insertEvidencia = await pool.query('INSERT INTO evidencias ( nombre_cliente, fk_id_usuario, fk_id_debilidades, fk_id_unidad, fk_id_criterios, fk_id_registros, fk_id_procesos, fk_id_estado, fk_id_ambito_academico) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)',
-        [nombre_cliente, fk_id_usuario, fk_id_debilidades, fk_id_unidad, fk_id_criterios, fk_id_registros, fk_id_procesos, fk_id_estado, fk_id_ambito_academico]);
+        const insertEvidencia = await pool.query('INSERT INTO evidencias ( nombre_cliente, fk_id_usuario, fk_id_debilidades, fk_id_unidad, fk_id_criterios, fk_id_registros, fk_id_procesos, fk_id_estado, fk_id_ambito_academico, fk_id_ambito_geografico) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10)',
+        [nombre_cliente, fk_id_usuario, fk_id_debilidades, fk_id_unidad, fk_id_criterios, fk_id_registros, fk_id_procesos, fk_id_estado, fk_id_ambito_academico, fk_id_ambito_geografico]);
         console.log(insertEvidencia);
         res.status(200).json({
             ok: true,
@@ -51,7 +51,7 @@ const post_Evidencias = async(req, res = response) => {
             body: {
                 evidencia: {nombre_cliente, fk_id_usuario, fk_id_debilidades, 
                     fk_id_unidad, fk_id_criterios, fk_id_registros, fk_id_procesos, 
-                    fk_id_estado, fk_id_ambito_academico }
+                    fk_id_estado, fk_id_ambito_academico, fk_id_ambito_geografico }
             }
         })
     } catch (error) {

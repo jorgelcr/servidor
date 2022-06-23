@@ -27,6 +27,7 @@ app.use('/api/getusuario', require('./routes/routes-usuario-normal/usuario.js'))
 app.use('/api/getunidad', require('./routes/routes-usuario-normal/unidad.js'));
 app.use('/api/getregistro', require('./routes/routes-usuario-normal/registro.js'));
 app.use('/api/getambitoacademico', require('./routes/routes-usuario-normal/ambito_academico.js'));
+app.use('/api/getambitogeografico', require('./routes/routes-usuario-normal/ambito_geografico.js'));
 app.use('/api/getcriterio', require('./routes/routes-usuario-normal/criterio.js'));
 app.use('/api/getproceso', require('./routes/routes-usuario-normal/proceso.js'));
 app.use('/api/getdebilidad', require('./routes/routes-usuario-normal/debilidad.js'));
@@ -34,6 +35,8 @@ app.use('/api/getdebilidad', require('./routes/routes-usuario-normal/debilidad.j
 app.use('/api/postevidencia', require('./routes/routes-usuario-normal/evidencias.js'));
 
 app.use('/api/deleteevidencias', require('./routes/routes-usuario-normal/evidencias.js'));
+
+
 
 app.listen(3000);
 console.log('Hello world');
