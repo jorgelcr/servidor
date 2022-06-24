@@ -75,41 +75,57 @@ const delete_Evidencias = async (req, res) => {
 const update_Evidencias = async (req, res) => {
    try {
        
-       const {codigo_criterios, nombre_criterios, descripcion_criterios} = req.body;
+       const {fk_id_debilidades, fk_id_unidad, fk_id_criterios, fk_id_registros, fk_id_procesos, fk_id_estado, fk_id_ambito_academico, fk_id_ambito_geografico} = req.body;
        let id = await req.params.id;
 
-       const updateCriterio = await pool.query('update evidencias set codigo_criterio=$1, descripcion_criterio=$2 where id_criterios=$3',
-       [codigo_criterios,
-        nombre_criterios,
-        descripcion_criterios,
-        id ]);
- /*        if (!id){
+       const updateEvidencias = await pool.query('update evidencias set fk_id_debilidades=$1, fk_id_unidad=$2, fk_id_criterios=$3, fk_id_registros=$4, fk_id_procesos=$5, fk_id_estado=$6, fk_id_ambito_academico=$7, fk_id_ambito_geografico=$8 where id_evidencias=$9',
+       [fk_id_debilidades, fk_id_unidad, fk_id_criterios, fk_id_registros, 
+        fk_id_procesos, fk_id_estado, fk_id_ambito_academico, 
+        fk_id_ambito_geografico, id]);
+            /*        if (!id){
  
-         res.status(404).json( { msg: 'No existe la Unidad'})
-     } */
+                res.status(404).json( { msg: 'No existe la Unidad'})
+            } */
    
         
 
-       console.log(updateCriterio);
-       res.json('Criterios actualizado exitosamente ');
+       console.log(updateEvidencias);
+       res.json('Evidencias actualizado exitosamente ');
    } catch (error) {
        console.log("AAAAAAAAAAAA: ",error);
     res.status(400).json( {
         ok: true,
-        msg: 'Error Get Criterios'
+        msg: 'Error Get Evidencias'
    })
 }
 }
 
-const getUserByIdEvidencias = async (req, res) => {
-    const id =  req.params.id;
-    let data = [];
-     data = await pool.query('select * from evidencias WHERE id_evidencias = $1', [id]);
-    res.status(200).json({
-        ok: true,
-        resultados: data.rows
-    }); 
-};
+
+
+
+
+const getByIdEvidencias = async (req, res) => {
+
+    try {
+        
+        const id =  req.params.id;
+        const data = await pool.query('SELECT fk_id_debilidades, fk_id_unidad, fk_id_criterios, fk_id_registros, fk_id_procesos, fk_id_estado, fk_id_ambito_academico, fk_id_ambito_geografico from evidencias WHERE id_evidencias = $1', [id]);
+        res.status(200).json({
+            ok: true,
+            resultado: data.rows});  
+
+ 
+    } catch (error) {
+        console.log("El error es: ", error)
+        res.status(400).json( {
+            ok: false,
+            msg: 'Error Search Get Evidencias'
+        }) 
+
+    }
+}  
+
+
 
 module.exports = {
 
@@ -117,6 +133,6 @@ get_Evidencias,
 post_Evidencias,
 delete_Evidencias,
 update_Evidencias,
-getUserByIdEvidencias,
+getByIdEvidencias,
 
 }

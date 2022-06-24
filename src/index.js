@@ -36,6 +36,9 @@ app.use('/api/postevidencia', require('./routes/routes-usuario-normal/evidencias
 
 app.use('/api/deleteevidencias', require('./routes/routes-usuario-normal/evidencias.js'));
 
+app.use('/api/putevidencias', require('./routes/routes-usuario-normal/evidencias.js'));
+app.use('/api/getidevidencia', require('./routes/routes-usuario-normal/evidencias.js'));
+
 
 
 app.listen(3000);
