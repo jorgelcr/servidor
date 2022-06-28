@@ -38,20 +38,21 @@ const get_Evidencias = async(req, res) => {
 
 const post_Evidencias = async(req, res = response) => {
 
-    const { nombre_cliente, fk_id_usuario, fk_id_debilidades, fk_id_unidad, fk_id_criterios, fk_id_registros, fk_id_procesos, fk_id_estado, fk_id_ambito_academico, fk_id_ambito_geografico} = req.body;
+    const { nombre_cliente, correo_usuario, fk_id_usuario, fk_id_debilidades, fk_id_unidad, fk_id_criterios, fk_id_registros, fk_id_procesos, fk_id_estado, fk_id_ambito_academico, fk_id_ambito_geografico, descripcion, resultado, almacenamiento, unidadpersonasevid, palabraclave, nomcortoevidencia} = req.body;
     
     try { 
 
-        const insertEvidencia = await pool.query('INSERT INTO evidencias ( nombre_cliente, fk_id_usuario, fk_id_debilidades, fk_id_unidad, fk_id_criterios, fk_id_registros, fk_id_procesos, fk_id_estado, fk_id_ambito_academico, fk_id_ambito_geografico) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10)',
-        [nombre_cliente, fk_id_usuario, fk_id_debilidades, fk_id_unidad, fk_id_criterios, fk_id_registros, fk_id_procesos, fk_id_estado, fk_id_ambito_academico, fk_id_ambito_geografico]);
+        const insertEvidencia = await pool.query('INSERT INTO evidencias ( nombre_cliente, e_correo_usuario, fk_id_usuario, fk_id_debilidades, fk_id_unidad, fk_id_criterios, fk_id_registros, fk_id_procesos, fk_id_estado, fk_id_ambito_academico, fk_id_ambito_geografico, descripcion, resultado, almacenamiento, unidadpersonasevid, palabraclave, nomcortoevidencia) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17)',
+        [nombre_cliente, correo_usuario, fk_id_usuario, fk_id_debilidades, fk_id_unidad, fk_id_criterios, fk_id_registros, fk_id_procesos, fk_id_estado, fk_id_ambito_academico, fk_id_ambito_geografico, descripcion, resultado, almacenamiento, unidadpersonasevid, palabraclave, nomcortoevidencia]);
         console.log(insertEvidencia);
         res.status(200).json({
             ok: true,
             message: ' Evidencia agregado exitosamente.',
             body: {
-                evidencia: {nombre_cliente, fk_id_usuario, fk_id_debilidades, 
+                evidencia: {nombre_cliente, correo_usuario, fk_id_usuario, fk_id_debilidades, 
                     fk_id_unidad, fk_id_criterios, fk_id_registros, fk_id_procesos, 
-                    fk_id_estado, fk_id_ambito_academico, fk_id_ambito_geografico }
+                    fk_id_estado, fk_id_ambito_academico, fk_id_ambito_geografico, descripcion, resultado, 
+                    almacenamiento, unidadpersonasevid, palabraclave, nomcortoevidencia }
             }
         })
     } catch (error) {
@@ -109,7 +110,7 @@ const getByIdEvidencias = async (req, res) => {
     try {
         
         const id =  req.params.id;
-        const data = await pool.query('SELECT fk_id_debilidades, fk_id_unidad, fk_id_criterios, fk_id_registros, fk_id_procesos, fk_id_estado, fk_id_ambito_academico, fk_id_ambito_geografico from evidencias WHERE id_evidencias = $1', [id]);
+        const data = await pool.query('SELECT nombre_cliente, e_correo_usuario, fk_id_debilidades, fk_id_unidad, fk_id_criterios, fk_id_registros, fk_id_procesos, fk_id_estado, fk_id_ambito_academico, fk_id_ambito_geografico from evidencias WHERE id_evidencias = $1', [id]);
         res.status(200).json({
             ok: true,
             resultado: data.rows});  
