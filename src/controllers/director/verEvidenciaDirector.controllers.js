@@ -16,11 +16,29 @@ const get_Evidencia = async(req, res) => {
 
     try {  
          
-        const selectEvidencias= await pool.query('SELECT id_evidencias, numero_folio, nombre_procesos, nombre_registros, nombre_debilidades, nombre_criterios, tipo_estados, id_estados, id_usuarios, id_rol, estado_reponsable FROM evidencias INNER JOIN procesos ON evidencias.fk_id_procesos = procesos.id_procesos INNER JOIN registros ON evidencias.fk_id_registros = registros.id_registros INNER JOIN debilidades ON evidencias.fk_id_debilidades = debilidades.id_debilidades INNER JOIN criterios ON evidencias.fk_id_criterios = criterios.id_criterios INNER JOIN estados ON evidencias.fk_id_estado = estados.id_estados INNER JOIN usuarios ON evidencias.fk_id_usuario = usuarios.id_usuarios INNER JOIN rol ON usuarios.fk_id_rol = rol.id_rol where id_rol = 2  ');
+        const selectEvidencias= await pool.query('SELECT id_evidencias, numero_folio, nombre_procesos, nombre_registros, nombre_debilidades, nombre_criterios, tipo_estados, id_estados, id_usuarios, id_rol, estado_evidencia_responsable, estado_evidencia_dac, revisado_dac, revisado_reponsable FROM evidencias INNER JOIN procesos ON evidencias.fk_id_procesos = procesos.id_procesos INNER JOIN registros ON evidencias.fk_id_registros = registros.id_registros INNER JOIN debilidades ON evidencias.fk_id_debilidades = debilidades.id_debilidades INNER JOIN criterios ON evidencias.fk_id_criterios = criterios.id_criterios INNER JOIN estados ON evidencias.fk_id_estado = estados.id_estados INNER JOIN usuarios ON evidencias.fk_id_usuario = usuarios.id_usuarios INNER JOIN rol ON usuarios.fk_id_rol = rol.id_rol where id_rol = 2  ');
      /*, id_usuarios, id_rol ------- INNER JOIN usuarios ON evidencias.fk_id_usuario = usuarios.id_usuarios INNER JOIN rol ON usuarios.fk_id_rol = rol.id_rol where id_rol = 4 and id_rol = 3  */
       /* SELECT id_usuarios, nombres_usuario, id_rol, nombre_rol FROM usuarios INNER JOIN unidad ON usuarios.fk_id_unidad  = unidad.id_unidad INNER JOIN rol ON usuarios.fk_id_rol  = rol.id_rol where id_rol = 3 */ 
       /* SELECT id_evidencias, numero_folio, nombre_procesos, nombre_registros, nombre_debilidades, nombre_criterios, tipo_estados, id_estados, id_usuarios, nombres_usuario, id_rol, nombre_rol, estado_reponsable FROM evidencias INNER JOIN procesos ON evidencias.fk_id_procesos = procesos.id_procesos INNER JOIN registros ON evidencias.fk_id_registros = registros.id_registros INNER JOIN debilidades ON evidencias.fk_id_debilidades = debilidades.id_debilidades INNER JOIN criterios ON evidencias.fk_id_criterios = criterios.id_criterios INNER JOIN estados ON evidencias.fk_id_estado = estados.id_estados INNER JOIN usuarios ON evidencias.fk_id_usuario = usuarios.id_usuarios INNER JOIN rol ON usuarios.fk_id_rol = rol.id_rol INNER JOIN unidad ON usuarios.fk_id_unidad  = unidad.id_unidad and usuarios.fk_id_rol  = rol.id_rol where id_rol = 3  */
         res.status(200).json(selectEvidencias.rows);
+
+    } catch (error) {
+        console.log("EL ERROR ES: ",error)
+          res.status(400).json( {
+        ok: true,
+        msg: 'Error Get Todas Evidencias '
+    }) 
+    }
+
+}
+
+const get_Evidencia_Director = async(req, res) => {
+
+    try {  
+         
+        const selectEvidenciasDirector= await pool.query('SELECT * FROM evidencias INNER JOIN procesos ON evidencias.fk_id_procesos = procesos.id_procesos INNER JOIN registros ON evidencias.fk_id_registros = registros.id_registros INNER JOIN estados ON evidencias.fk_id_estado = estados.id_estados INNER JOIN usuarios ON evidencias.fk_id_usuario = usuarios.id_usuarios INNER JOIN rol ON usuarios.fk_id_rol = rol.id_rol INNER JOIN ambito_academico ON evidencias.fk_id_ambito_academico = ambito_academico.id_ambito_academico INNER JOIN unidad ON evidencias.fk_id_unidad = unidad.id_unidad where id_rol = 2  ');
+     
+        res.status(200).json(selectEvidenciasDirector.rows);
 
     } catch (error) {
         console.log("EL ERROR ES: ",error)
@@ -96,5 +114,6 @@ module.exports = {
     get_Evidencia,
     delete_evidencia,
     get_Evidencia_Id,
-    update_EvidenciaDirector
+    update_EvidenciaDirector,
+    get_Evidencia_Director
 }
