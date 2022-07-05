@@ -10,6 +10,7 @@ app.use(express.json());
 app.use(express.urlencoded({extended: false}));
 app.use(cors());
 ///Rutas
+//########################## ADMINISTRADOR ####################################
 app.use('/api/unidad', require('./routes/routes-administrador/unidad.js'));
 app.use('/api/criterio', require('./routes/routes-administrador/criterios.js'));
 app.use('/api/proceso', require('./routes/routes-administrador/procesos.js'));
@@ -18,6 +19,15 @@ app.use('/api/ambitoacademico', require('./routes/routes-administrador/AmbitoAca
 app.use('/api/usuario', require('./routes/routes-administrador/usuario.js'));
 app.use('/api/debilidad', require('./routes/routes-administrador/debilidad.js'));
 app.use('/api/ambitogeografico', require('./routes/routes-administrador/ambitoGeografico.js'));
+
+
+//########################## DIRECTOR ####################################
+ 
+app.use('/api/director', require('./routes/routes-director/guardarEvidenciaDirector.js'));
+app.use('/api/ver-director', require('./routes/routes-director/verEvidenciaDirector'));
+
+
+//########################## USUARIO-NORMAL ####################################
 
 
 app.use('/api/evidencias', require('./routes/routes-usuario-normal/evidencias.js')); 

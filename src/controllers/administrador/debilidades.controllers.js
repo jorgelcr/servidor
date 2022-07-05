@@ -15,7 +15,7 @@ const get_Debilidad = async(req, res) => {
 
     try { 
          
-        const selectDebilidades= await pool.query('SELECT id_debilidades, codigo_debilidades,        nombre_debilidades, descripcion_debilidades, estado_debilidades, nombre_unidad, nombre_criterios FROM debilidades INNER JOIN unidad ON debilidades.fk_id_unidad = unidad.id_unidad INNER JOIN criterios ON debilidades.fk_id_criterio = criterios.id_criterios ');
+        const selectDebilidades= await pool.query('SELECT id_debilidades, codigo_debilidades, nombre_debilidades, descripcion_debilidades, estado_debilidades, nombre_unidad, nombre_criterios, fk_id_unidad, fk_id_criterio FROM debilidades INNER JOIN unidad ON debilidades.fk_id_unidad = unidad.id_unidad INNER JOIN criterios ON debilidades.fk_id_criterio = criterios.id_criterios ');
 
         res.status(200).json(selectDebilidades.rows);
 
@@ -119,7 +119,7 @@ const getUnidadDebilidad = async(req, res) => {
 
     try { 
          
-        const selectUnidad= await pool.query('SELECT * FROM unidad');
+        const selectUnidad= await pool.query('SELECT * FROM unidad where unidad_defecto = true');
       
         res.status(200).json({
             ok: true,
@@ -137,7 +137,7 @@ const get_CriterioDeblidad = async(req, res) => {
 
     try {
         
-        const selectCriterio= await pool.query('SELECT * FROM criterios');
+        const selectCriterio= await pool.query('SELECT * FROM criterios where estado_criterios = true');
        
         res.status(200).json({
             ok: false,

@@ -15,7 +15,7 @@ const get_Usuario = async(req, res) => {
 
     try { 
          
-        const selectUsuarios= await pool.query('SELECT * FROM usuarios INNER JOIN unidad ON usuarios.fk_id_unidad = unidad.id_unidad');
+        const selectUsuarios= await pool.query('SELECT * FROM usuarios INNER JOIN unidad ON usuarios.fk_id_unidad = unidad.id_unidad INNER JOIN rol ON usuarios.fk_id_rol = rol.id_rol'); 
       
         res.status(200).json(selectUsuarios.rows);
 
