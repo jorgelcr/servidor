@@ -4,12 +4,11 @@ const res = require('express/lib/response');
 const router = Router();
 
 
-const {get_Evidencia, delete_evidencia, get_Evidencia_Id, update_EvidenciaDirector, get_Evidencia_Director} = require('../../controllers/director/verEvidenciaDirector.controllers');
+const {get_Evidencia, delete_evidencia, get_Evidencia_Id, update_EvidenciaDirector} = require('../../controllers/director/verEvidenciaDirector.controllers');
        
 
 
 router.get('/Evidencias', get_Evidencia);
-router.get('/Evidencias/director', get_Evidencia_Director);
 router.delete('/:id', delete_evidencia);
 router.get('/:id', get_Evidencia_Id);
 router.put('/:id', update_EvidenciaDirector);

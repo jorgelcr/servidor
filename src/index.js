@@ -25,7 +25,7 @@ app.use('/api/ambitogeografico', require('./routes/routes-administrador/ambitoGe
  
 app.use('/api/director', require('./routes/routes-director/guardarEvidenciaDirector.js'));
 app.use('/api/ver-director', require('./routes/routes-director/verEvidenciaDirector'));
-
+app.use('/api/misEvidencias-director', require('./routes/routes-director/misEvidenciasDirector'));
 
 //########################## USUARIO-NORMAL ####################################
 
