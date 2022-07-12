@@ -27,8 +27,13 @@ app.use('/api/director', require('./routes/routes-director/guardarEvidenciaDirec
 app.use('/api/ver-director', require('./routes/routes-director/verEvidenciaDirector'));
 app.use('/api/misEvidencias-director', require('./routes/routes-director/misEvidenciasDirector'));
 
+  
+//########################## USUARIO-RESPONSABLE ####################################
+  
+app.use('/api/ver-responsable', require('./routes/routes-responsable/verEvidenciasResponsable'));
+app.use('/api/guardarEvidenciasResponsable', require('./routes/routes-responsable/guardarEvidenciaResponsable'));
+ 
 //########################## USUARIO-NORMAL ####################################
-
 
 app.use('/api/evidencias', require('./routes/routes-usuario-normal/evidencias.js')); 
 
