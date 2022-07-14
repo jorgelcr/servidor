@@ -16,7 +16,8 @@ const get_Evidencia_Id_Responsable = async (req, res) => {
     
     try {
         const id =  req.params.id;
-        const data = await pool.query('select  evidencias.fk_id_unidad, evidencias.fk_id_ambito_academico, evidencias.fk_id_criterios, evidencias.fk_id_registros, evidencias.fk_id_procesos, evidencias.fk_id_ambito_geografico, evidencias.fk_id_debilidades, numero_folio, fecha_evidencia, numero_mejoras, descripcion, resultado, almacenamiento, unidades_personas_evidencias, palabra_clave, nombre_corto_evidencia, usuarios.id_usuarios, usuarios.rut, usuarios.correo_usuario, estado_evidencia_responsable, estado_evidencia_dac, revisado_reponsable, revisado_dac FROM evidencias INNER JOIN procesos ON evidencias.fk_id_procesos = procesos.id_procesos INNER JOIN registros ON evidencias.fk_id_registros = registros.id_registros INNER JOIN debilidades ON evidencias.fk_id_debilidades = debilidades.id_debilidades INNER JOIN criterios ON evidencias.fk_id_criterios = criterios.id_criterios INNER JOIN estados ON evidencias.fk_id_estado = estados.id_estados INNER JOIN ambito_geografico ON evidencias.fk_id_ambito_geografico = ambito_geografico.id_ambito_geografico INNER JOIN ambito_academico ON evidencias.fk_id_ambito_academico  = ambito_academico.id_ambito_academico INNER JOIN unidad ON evidencias.fk_id_unidad  = unidad.id_unidad JOIN usuarios ON evidencias.fk_id_usuario = usuarios.id_usuarios or usuarios.fk_id_unidad = unidad.id_unidad  INNER JOIN rol ON usuarios.fk_id_rol = rol.id_rol  WHERE numero_folio = $1 and usuarios.fk_id_rol = 2 or estado_unidad_responsable = true', [id]);
+        const data = await pool.query('select  evidencias.fk_id_unidad, evidencias.fk_id_ambito_academico, evidencias.fk_id_criterios, evidencias.fk_id_registros, evidencias.fk_id_procesos, evidencias.fk_id_ambito_geografico, evidencias.fk_id_debilidades, numero_folio, fecha_evidencia, numero_mejoras, descripcion, resultado, almacenamiento, unidades_personas_evidencias, palabra_clave, nombre_corto_evidencia, usuarios.id_usuarios, usuarios.rut, usuarios.correo_usuario, estado_evidencia_responsable, estado_evidencia_dac, revisado_reponsable, revisado_dac FROM evidencias INNER JOIN procesos ON evidencias.fk_id_procesos = procesos.id_procesos INNER JOIN registros ON evidencias.fk_id_registros = registros.id_registros INNER JOIN debilidades ON evidencias.fk_id_debilidades = debilidades.id_debilidades INNER JOIN criterios ON evidencias.fk_id_criterios = criterios.id_criterios INNER JOIN estados ON evidencias.fk_id_estado = estados.id_estados INNER JOIN ambito_geografico ON evidencias.fk_id_ambito_geografico = ambito_geografico.id_ambito_geografico INNER JOIN ambito_academico ON evidencias.fk_id_ambito_academico  = ambito_academico.id_ambito_academico INNER JOIN unidad ON evidencias.fk_id_unidad  = unidad.id_unidad JOIN usuarios ON evidencias.fk_id_usuario = usuarios.id_usuarios or usuarios.fk_id_unidad = unidad.id_unidad  INNER JOIN rol ON usuarios.fk_id_rol = rol.id_rol  WHERE numero_folio = $1 and usuarios.fk_id_rol = 2 or estado_unidad_responsable = true',
+         [id]);
                         /* evidencias.fk_id_unidad, evidencias.fk_id_ambito_academico, evidencias.fk_id_criterios, evidencias.fk_id_registros, evidencias.fk_id_procesos, evidencias.fk_id_ambito_geografico, evidencias.fk_id_debilidades, numero_folio, fecha_evidencia, numero_mejoras, descripcion, resultado, almacenamiento, unidades_personas_evidencias, palabra_clave, nombre_corto_evidencia, usuarios.id_usuarios, usuarios.rut, usuarios.correo_usuario  FROM evidencias INNER JOIN procesos ON evidencias.fk_id_procesos = procesos.id_procesos INNER JOIN registros ON evidencias.fk_id_registros = registros.id_registros INNER JOIN debilidades ON evidencias.fk_id_debilidades = debilidades.id_debilidades INNER JOIN criterios ON evidencias.fk_id_criterios = criterios.id_criterios INNER JOIN estados ON evidencias.fk_id_estado = estados.id_estados INNER JOIN ambito_geografico ON evidencias.fk_id_ambito_geografico = ambito_geografico.id_ambito_geografico INNER JOIN ambito_academico ON evidencias.fk_id_ambito_academico  = ambito_academico.id_ambito_academico INNER JOIN unidad ON evidencias.fk_id_unidad  = unidad.id_unidad JOIN usuarios ON evidencias.fk_id_usuario = usuarios.id_usuarios INNER JOIN rol ON usuarios.fk_id_rol = rol.id_rol WHERE id_evidencias = $1 */
         res.status(200).json(data.rows);  
         
@@ -182,7 +183,7 @@ const update_EvicenciaResponsable= async(req, res = response) => {
         const { observaciones_responsable} = req.body;
         let id = await req.params.id;
   
-        const updateEvidenciaResponsable = await pool.query('update evidencias set  observaciones_responsable  = $1, estado_evidencia_responsable = 2, revisado_reponsable = true where id_evidencias=$2',
+        const updateEvidenciaResponsable = await pool.query('update evidencias set  observaciones_responsable  = $1, estado_evidencia_responsable = 2, revisado_reponsable = true, vigente = false where numero_folio=$2',
         [observaciones_responsable,    
          id ]);
  /* estado_evidencia_responsable, revisado_reponsable, se usan para que el usuario lo ingrese en algun  formulario   */
@@ -196,7 +197,9 @@ const update_EvicenciaResponsable= async(req, res = response) => {
          msg: 'Error RECHAZADAR EVIDENCIA RESPONSABLE'
     })
  }
- }          
+ }   
+ 
+ 
 module.exports = {
 
     get_Evidencia_Id_Responsable, 

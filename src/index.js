@@ -33,6 +33,11 @@ app.use('/api/misEvidencias-director', require('./routes/routes-director/misEvid
 app.use('/api/ver-responsable', require('./routes/routes-responsable/verEvidenciasResponsable'));
 app.use('/api/guardarEvidenciasResponsable', require('./routes/routes-responsable/guardarEvidenciaResponsable'));
  
+//########################## LOGIN ####################################
+  
+app.use('/api/login', require('./routes/routes-login/login'));
+
+
 //########################## USUARIO-NORMAL ####################################
 
 app.use('/api/evidencias', require('./routes/routes-usuario-normal/evidencias.js')); 
