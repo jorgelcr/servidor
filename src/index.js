@@ -48,6 +48,7 @@ app.use('/api/deleteevidencias', require('./routes/routes-usuario-normal/evidenc
 
 app.use('/api/putevidencias', require('./routes/routes-usuario-normal/evidencias.js'));
 app.use('/api/getidevidencia', require('./routes/routes-usuario-normal/evidencias.js'));
+app.use('/api/getusuariopass/', require('./routes/routes-usuario-normal/usuario.js'));
 
 
 
