@@ -25,10 +25,20 @@ app.use('/api/ambitogeografico', require('./routes/routes-administrador/ambitoGe
  
 app.use('/api/director', require('./routes/routes-director/guardarEvidenciaDirector.js'));
 app.use('/api/ver-director', require('./routes/routes-director/verEvidenciaDirector'));
+app.use('/api/misEvidencias-director', require('./routes/routes-director/misEvidenciasDirector'));
+
+  
+//########################## USUARIO-RESPONSABLE ####################################
+  
+app.use('/api/ver-responsable', require('./routes/routes-responsable/verEvidenciasResponsable'));
+app.use('/api/guardarEvidenciasResponsable', require('./routes/routes-responsable/guardarEvidenciaResponsable'));
+ 
+//########################## LOGIN ####################################
+  
+app.use('/api/login', require('./routes/routes-login/login'));
 
 
 //########################## USUARIO-NORMAL ####################################
-
 
 app.use('/api/evidencias', require('./routes/routes-usuario-normal/evidencias.js')); 
 
