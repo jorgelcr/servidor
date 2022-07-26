@@ -157,18 +157,18 @@ const update_EvicenciaResponsable= async(req, res = response) => {
 
         try {
             
-            const { estado_evidencia_responsable, revisado_reponsable } = req.body;
+            const { estado_evidencia_responsable, revisado_reponsable, fk_id_usuario_responsable } = req.body;
             let id = await req.params.id;
      
-            const updateEvidenciaResponsable = await pool.query('update evidencias set estado_evidencia_responsable = 1, revisado_reponsable = true where numero_folio=$1',
-            [    
+            const updateEvidenciaResponsable = await pool.query('update evidencias set fk_id_usuario_responsable = $1, estado_evidencia_responsable = 1, revisado_reponsable = true where numero_folio=$2 ',
+            [fk_id_usuario_responsable,     
              id ]);
-     /* estado_evidencia_responsable, revisado_reponsable, se usan para que el usuario lo ingrese en algun  formulario   */
+     /* estado_evidencia_responsable, revisado_reponsable, se usan para que el usuario lo ingrese en algun  formulario   */ 
             console.log(updateEvidenciaResponsable);
             res.json('Evidencia APROBADA EXITOSAMENTE RESPONSABLE');
      
         } catch (error) {
-            console.log("EL ERROR ES update_EvicenciaResponsable: ",error);
+            console.log("EL ERROR ES update_EvicenciaResponsable: ",error); 
          res.status(400).json( {
              ok: true,
              msg: 'Error ACTUALIZAR EVIDENCIA RESPONSABLE'
@@ -180,11 +180,12 @@ const update_EvicenciaResponsable= async(req, res = response) => {
 
     try {
         
-        const { observaciones_responsable} = req.body;
+        const { observaciones_responsable, fk_id_usuario_responsable} = req.body;
         let id = await req.params.id;
   
-        const updateEvidenciaResponsable = await pool.query('update evidencias set  observaciones_responsable  = $1, estado_evidencia_responsable = 2, revisado_reponsable = true, vigente = false where numero_folio=$2',
-        [observaciones_responsable,    
+        const updateEvidenciaResponsable = await pool.query('update evidencias set fk_id_usuario_responsable = $1, observaciones_responsable  = $2, estado_evidencia_responsable = 2, revisado_reponsable = true, vigente = false where numero_folio=$3',
+        [  fk_id_usuario_responsable,
+            observaciones_responsable,    
          id ]);
  /* estado_evidencia_responsable, revisado_reponsable, se usan para que el usuario lo ingrese en algun  formulario   */
         console.log(updateEvidenciaResponsable);
