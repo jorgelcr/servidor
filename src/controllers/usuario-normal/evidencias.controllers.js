@@ -6,7 +6,7 @@ const config = {
        
     user: 'postgres',
     host: 'localhost',
-    password: '7551',
+    password: '1',
     database: 'evidencias'
 }
 const pool = new Pool (config);
@@ -38,21 +38,19 @@ const get_Evidencias = async(req, res) => {
 
 const post_Evidencias = async(req, res = response) => {
 
-    const { nombre_cliente, correo_usuario, fk_id_usuario, fk_id_debilidades, fk_id_unidad, fk_id_criterios, fk_id_registros, fk_id_procesos, fk_id_estado, fk_id_ambito_academico, fk_id_ambito_geografico, descripcion, resultado, almacenamiento, unidadpersonasevid, palabraclave, nomcortoevidencia} = req.body;
+    const { nombre_cliente, e_correo_usuario, numero_folio, numero_mejoras, descripcion, resultado, almacenamiento, unidades_personas_evidencias, palabra_clave, nombre_corto_evidencia, fk_id_usuario, fk_id_debilidades, fk_id_unidad, fk_id_criterios, fk_id_registros, fk_id_procesos, fk_id_estado, fk_id_ambito_academico, fk_id_ambito_geografico} = req.body;
     
     try { 
 
-        const insertEvidencia = await pool.query('INSERT INTO evidencias ( nombre_cliente, e_correo_usuario, fk_id_usuario, fk_id_debilidades, fk_id_unidad, fk_id_criterios, fk_id_registros, fk_id_procesos, fk_id_estado, fk_id_ambito_academico, fk_id_ambito_geografico, descripcion, resultado, almacenamiento, unidadpersonasevid, palabraclave, nomcortoevidencia) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17)',
-        [nombre_cliente, correo_usuario, fk_id_usuario, fk_id_debilidades, fk_id_unidad, fk_id_criterios, fk_id_registros, fk_id_procesos, fk_id_estado, fk_id_ambito_academico, fk_id_ambito_geografico, descripcion, resultado, almacenamiento, unidadpersonasevid, palabraclave, nomcortoevidencia]);
+        //const insertEvidencia = await pool.query('INSERT INTO evidencias ( nombre_cliente, e_correo_usuario, fk_id_usuario, fk_id_debilidades, fk_id_unidad, fk_id_criterios, fk_id_registros, fk_id_procesos, fk_id_estado, fk_id_ambito_academico, fk_id_ambito_geografico, descripcion, resultado, almacenamiento, unidadpersonasevid, palabraclave, nomcortoevidencia) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17)',
+        //[nombre_cliente, correo_usuario, fk_id_usuario, fk_id_debilidades, fk_id_unidad, fk_id_criterios, fk_id_registros, fk_id_procesos, fk_id_estado, fk_id_ambito_academico, fk_id_ambito_geografico, descripcion, resultado, almacenamiento, unidadpersonasevid, palabraclave, nomcortoevidencia]);
+        const insertEvidencia = await pool.query('INSERT INTO evidencias (nombre_cliente, e_correo_usuario, numero_folio, numero_mejoras, descripcion, resultado, almacenamiento, unidades_personas_evidencias, palabra_clave, nombre_corto_evidencia, fk_id_usuario, fk_id_debilidades, fk_id_unidad, fk_id_criterios, fk_id_registros, fk_id_procesos, fk_id_estado, fk_id_ambito_academico, fk_id_ambito_geografico) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17, $18, $19)',[nombre_cliente, e_correo_usuario, numero_folio, numero_mejoras, descripcion, resultado, almacenamiento, unidades_personas_evidencias, palabra_clave, nombre_corto_evidencia, fk_id_usuario, fk_id_debilidades, fk_id_unidad, fk_id_criterios, fk_id_registros, fk_id_procesos, fk_id_estado, fk_id_ambito_academico, fk_id_ambito_geografico]);
         console.log(insertEvidencia);
         res.status(200).json({
             ok: true,
             message: ' Evidencia agregado exitosamente.',
             body: {
-                evidencia: {nombre_cliente, correo_usuario, fk_id_usuario, fk_id_debilidades, 
-                    fk_id_unidad, fk_id_criterios, fk_id_registros, fk_id_procesos, 
-                    fk_id_estado, fk_id_ambito_academico, fk_id_ambito_geografico, descripcion, resultado, 
-                    almacenamiento, unidadpersonasevid, palabraclave, nomcortoevidencia }
+                evidencia: {nombre_cliente, e_correo_usuario, numero_folio, numero_mejoras, descripcion, resultado, almacenamiento, unidades_personas_evidencias, palabra_clave, nombre_corto_evidencia, fk_id_usuario, fk_id_debilidades, fk_id_unidad, fk_id_criterios, fk_id_registros, fk_id_procesos, fk_id_estado, fk_id_ambito_academico, fk_id_ambito_geografico }
             }
         })
     } catch (error) {

@@ -6,7 +6,7 @@ const config = {
        
     user: 'postgres',
     host: 'localhost',
-    password: '7551',
+    password: '1',
     database: 'evidencias'
 }
 const pool = new Pool (config);
